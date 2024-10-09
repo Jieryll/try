@@ -40,10 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             }
 
-            // Save PDF to a file
-            $pdf_filename = 'temp/orderdetails' . $trans_id . '.pdf';
-            $pdf->Output($pdf_filename, 'F');  // Save the file on the server
-
             // Prepare SQL statement for inserting into the orders table
             $stmt = $conn->prepare("INSERT INTO orders (transaction_id, total, payment, sukli, statuss, balance, datetimee) VALUES (?, ?, ?, ?, ?, ?, NOW())");
 
@@ -54,10 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Execute the statement
                 if ($stmt->execute()) {
                     // Force the file to be downloaded by the client
-                    header('Content-Type: application/pdf');
-                    header('Content-Disposition: attachment; filename="orderdetails' . $trans_id . '.pdf"');
-                    header('Content-Length: ' . filesize($pdf_filename));
-                    readfile($pdf_filename);
 
                     // Redirect after download
                     header("Location: laundry.php");
@@ -70,6 +62,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Output any errors during statement preparation
                 echo "SQL Preparation Error: " . $conn->error;
             }
+
+            // Save PDF to a file
+            $pdf_filename = 'temp/orderdetails' . $trans_id . '.pdf';
+            $pdf->Output($pdf_filename, 'F');  // Save the file on the server
+                    header('Content-Type: application/pdf');
+                    header('Content-Disposition: attachment; filename="orderdetails' . $trans_id . '.pdf"');
+                    header('Content-Length: ' . filesize($pdf_filename));
+                    readfile($pdf_filename);
+
         } else {
             echo "Amount paid is less than the total.";
         }
