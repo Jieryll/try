@@ -447,12 +447,14 @@ session_start();
                     <input name="trans_id" id="trans_id" class="payment-input" placeholder="0" required>
                 </div>
             </div>
+
             <?php 
             if ($pdf_url): ?>
             <iframe src="<?php echo ($pdf_url); ?>" width="100%" height="600px" id="pdfFrame" style="display: none;"></iframe>
             <?php else: ?>
             <p>No PDF available to display.</p>
             <?php endif; ?>
+
             <div class="numpad">       
                 <div class="btn-align">
                     <button type="button" class="okays">1</button>
@@ -469,7 +471,7 @@ session_start();
                     <button type="button" class="okays">0</button>
                 </div>
                 <div class="btn-align">
-                    <div><button type="submit" class="okayss" id="paidbtn" name="payment-btn" >Confirm</button></div>
+                    <div><button type="submit" class="okayss" id="paidbtn" name="payment">Confirm</button></div>
                     <div><button type="button" class="okays" id="exactAmountBtn" onclick="setExactAmount()">Exact Amount</button></div>
                     <div><button type="button" class="okays" id="deletebtn" onclick="clearAmount()">Delete</button></div>
                     <div><button type="button" class="okays" id="closebtn"  onclick="close()">Back</button></div>
