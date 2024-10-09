@@ -48,7 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     header('Content-Disposition: attachment; filename="orderdetails' . $trans_id . '.pdf"');
                     header('Content-Length: ' . filesize($pdf_filename));
                     readfile($pdf_filename);
-
                     header("Location: laundry.php"); 
                     exit;
                 } else {

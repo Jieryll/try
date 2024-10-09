@@ -443,7 +443,6 @@ session_start();
                 </div>
                 <div>
                     <div><h1 class="scaleh1">Job Number</h1></div>
-                    <input name="sumtotal" type="hidden">
                     <input name="trans_id" id="trans_id" class="payment-input" placeholder="0" required>
                 </div>
             </div>
